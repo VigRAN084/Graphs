@@ -60,13 +60,31 @@ class UnweightedGraph:
         return -1
 
 if __name__ == "__main__":
-    cycle_graph = UnweightedGraph()
-    cycle_graph.add_edge(0, 1)
-    cycle_graph.add_edge(1, 2)
-    cycle_graph.add_edge(2, 3)
-    cycle_graph.add_edge(3, 0)
+
+    graph = UnweightedGraph()
+
+    # Add interconnected components
+    for i in range(5):
+        for j in range(i * 5, (i + 1) * 5 - 1):
+            graph.add_edge(j, j + 1)
+
+    # Add loops
+    for i in range(5):
+        graph.add_edge(i * 5, (i + 1) * 5 - 1)
+
+    # Add some additional edges
+    graph.add_edge(2, 12)
+    graph.add_edge(8, 17)
+    graph.add_edge(17,2)
+    graph.add_edge(12,24)
+    graph.add_edge(0,22)
 
 
-    cycle_graph.visualize()
+    # Visualize the complex graph
+    print(graph.shortest_path(22,0))
+    print(graph.shortest_path(24,2))
+    print(graph.shortest_path(5,17))
+    graph.visualize()
+
     
     
