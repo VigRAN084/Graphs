@@ -59,33 +59,18 @@ class WeightedGraph:
             S.append(min_dist_vtx)
         return pred
 
-
-
 if __name__ == "__main__":
-    weighted_graph = WeightedGraph()
+    fully_connected_graph = WeightedGraph()
 
-    # Test Case 1: A simple connected graph with weights
-    weighted_graph.add_edge(0, 1, weight=3)
-    weighted_graph.add_edge(1, 2, weight=2)
-    weighted_graph.add_edge(2, 3, weight=1)
-    weighted_graph.add_edge(3, 0, weight=4)
-    weighted_graph.add_edge(0, 2, weight=5)
+    # Define the number of vertices
+    num_vertices = 5
 
-    # Test Case 2: A disconnected graph with multiple components
-    weighted_graph.add_edge(4, 5, weight=2)
-    weighted_graph.add_edge(6, 7, weight=3)
+    # Add edges with unique weights to create a fully connected graph
+    for i in range(num_vertices):
+        for j in range(i + 1, num_vertices):
+            weight = random.randint(1, 10)  # Random weight between 1 and 10
+            fully_connected_graph.add_edge(i, j, weight=weight)
 
-    # Test Case 3: A graph with loops and dense connections
-    weighted_graph.add_edge(8, 9, weight=1)
-    weighted_graph.add_edge(9, 10, weight=2)
-    weighted_graph.add_edge(10, 11, weight=3)
-    weighted_graph.add_edge(11, 8, weight=4)
-    weighted_graph.add_edge(12, 13, weight=2)
-    weighted_graph.add_edge(13, 14, weight=3)
-    weighted_graph.add_edge(14, 12, weight=1)
-
-    # Test Case 4: A graph with a single node
-    weighted_graph.add_edge(15, 15, weight=0)
-
-    # Visualize the complex graph
-    weighted_graph.visualize()
+    # Visualize the fully connected graph
+    fully_connected_graph.visualize()
+    print(fully_connected_graph.rud_dijkstra(0))
